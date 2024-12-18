@@ -29,14 +29,14 @@
     </label><br><br>
     <label for="numMoves">Number ∈ [1, 5] of Moves:</label>
     <input type="number" id="numMoves" min="1" max="5" value="1"><br><br>
-    <button onclick="generateChallenge()">Generate Challenge</button>
+    <button onclick="generateChallenge()">Generate Suggestion</button>
 
     <div class="output" id="output"></div>
 
     <script>
         const locations = ["Short stairs", "picnic tables", "wide stairs", "U staircase"];
-        const constraints = ["Only use two limbs", "move sideways", "backwards", "only use three limbs", "add rotation", "go up", "go down", "zero airtime", "direction change", "under", "over"];
-        const moves = ["Vault", "Cat Leap", "Jump", "Climb", "Roll", "Swing"]; // no swings in psycho add swing later
+        const constraints = ["Only use two limbs", "move sideways", "backwards", "only use three limbs", "add rotation", "go up", "go down", "zero airtime", "direction change", "under", "over", "airtime"];
+        const moves = ["Vault", "Land on _", "Land on |", "Jump", "Climb", "Roll", "Swing", "slide", "balance"]; // no swings in psycho add swing later
 
         function getRandomItem(list) {
             return list[Math.floor(Math.random() * list.length)];
