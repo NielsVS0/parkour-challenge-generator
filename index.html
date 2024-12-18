@@ -21,20 +21,22 @@
 </head>
 <body>
     <h1>Parkour Challenge Generator</h1>
-    <p>Generate random parkour challenges with locations, constraints, and moves!</p>
+    <p> Constraints-driven creative parkour challenges based on random suggestion.</p>
+    <p>Combines a location with one or more moves and the possibility for additional constraints.</p>
+    <p> Only for covered Psycho spot at the moment. </p>
     <label>
         <input type="checkbox" id="excludeConstraints"> Exclude Constraints
     </label><br><br>
-    <label for="numMoves">Number of Moves:</label>
-    <input type="number" id="numMoves" min="1" max="10" value="1"><br><br>
+    <label for="numMoves">Number ∈ [1, 5] of Moves:</label>
+    <input type="number" id="numMoves" min="1" max="5" value="1"><br><br>
     <button onclick="generateChallenge()">Generate Challenge</button>
 
     <div class="output" id="output"></div>
 
     <script>
-        const locations = ["Park", "Gym", "Rooftop", "Staircase", "Rail", "Playground"];
-        const constraints = ["Only use one hand", "No running", "Stay silent", "Time limit: 10 seconds"];
-        const moves = ["Kong Vault", "Cat Leap", "Precision Jump", "Wall Run", "Roll", "Swing"];
+        const locations = ["Short stairs", "picnic tables", "wide stairs", "U staircase"];
+        const constraints = ["Only use two limbs", "move sideways", "backwards", "only use three limbs", "add rotation", "go up", "go down", "zero airtime", "direction change", "under", "over"];
+        const moves = ["Vault", "Cat Leap", "Jump", "Climb", "Roll", "Swing"]; // no swings in psycho add swing later
 
         function getRandomItem(list) {
             return list[Math.floor(Math.random() * list.length)];
@@ -42,7 +44,7 @@
 
         function generateChallenge() {
             const excludeConstraints = document.getElementById("excludeConstraints").checked;
-            const numMoves = parseInt(document.getElementById("numMoves").value, 10);
+            const numMoves = parseInt(document.getElementById("numMoves").value, 5);
 
             const randomLocation = getRandomItem(locations);
             const randomConstraint = excludeConstraints ? null : getRandomItem(constraints);
