@@ -50,7 +50,7 @@
         function generateChallenge() {
             const excludeConstraints = document.getElementById("excludeConstraints").checked;
             const wetCondition = document.getElementById("wetCondition").checked;
-            const numMoves = parseInt(document.getElementById("numMoves").value, 5);
+            const numMoves = parseInt(document.getElementById("numMoves").value, 6);
 
             const locations = wetCondition ? coveredLocations : dryLocations;
 
