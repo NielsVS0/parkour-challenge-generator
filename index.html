@@ -24,6 +24,10 @@
     <p> Constraints-driven creative parkour challenges based on random suggestion.</p>
     <p>Combines a location with one or more moves and the possibility for additional constraints.</p>
     <p> Only for covered FPPW spot at the moment. </p>
+
+    <label>
+        <input type="checkbox" id="wetCondition"> Covered locations only
+    </label><br><br>
     <label>
         <input type="checkbox" id="excludeConstraints"> Exclude Constraints
     </label><br><br>
@@ -34,8 +38,9 @@
     <div class="output" id="output"></div>
 
     <script>
-        const locations = ["Short stairs", "picnic tables", "wide stairs", "U staircase"];
-        const constraints = ["Only use two limbs", "move sideways", "backwards", "only use three limbs", "add rotation", "go up", "go down", "zero airtime", "direction change", "under", "over", "airtime"];
+        const dryLocations = ["Short stairs", "picnic tables", "wide stairs", "U staircase", "concrete walls", "rails"];
+        const coveredLocations = ["Short stairs", "picnic tables", "wide stairs", "U staircase"];
+        const constraints = ["use two limbs", "move sideways", "backwards", "use three limbs", "add rotation", "go up", "go down", "zero airtime", "direction change", "under", "over", "airtime"];
         const moves = ["Vault", "Land on _", "Land on |", "Jump", "Climb", "Roll", "Swing", "slide", "balance"]; // no swings in psycho add swing later
 
         function getRandomItem(list) {
@@ -44,7 +49,10 @@
 
         function generateChallenge() {
             const excludeConstraints = document.getElementById("excludeConstraints").checked;
+            const wetCondition = document.getElementById("wetCondition").checked;
             const numMoves = parseInt(document.getElementById("numMoves").value, 5);
+
+            const locations = wetCondition ? coveredLocations : dryLocations;
 
             const randomLocation = getRandomItem(locations);
             const randomConstraint = excludeConstraints ? null : getRandomItem(constraints);
