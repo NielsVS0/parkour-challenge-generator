@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkour Challenge Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Parkour Challenge Generator</h1>
+    <p>Generate random parkour challenges with locations, constraints, and moves!</p>
+    <label>
+        <input type="checkbox" id="excludeConstraints"> Exclude Constraints
+    </label><br><br>
+    <label for="numMoves">Number of Moves:</label>
+    <input type="number" id="numMoves" min="1" max="10" value="1"><br><br>
+    <button onclick="generateChallenge()">Generate Challenge</button>
+
+    <div class="output" id="output"></div>
+
+    <script>
+        const locations = ["Park", "Gym", "Rooftop", "Staircase", "Rail", "Playground"];
+        const constraints = ["Only use one hand", "No running", "Stay silent", "Time limit: 10 seconds"];
+        const moves = ["Kong Vault", "Cat Leap", "Precision Jump", "Wall Run", "Roll", "Swing"];
+
+        function getRandomItem(list) {
+            return list[Math.floor(Math.random() * list.length)];
+        }
+
+        function generateChallenge() {
+            const excludeConstraints = document.getElementById("excludeConstraints").checked;
+            const numMoves = parseInt(document.getElementById("numMoves").value, 10);
+
+            const randomLocation = getRandomItem(locations);
+            const randomConstraint = excludeConstraints ? null : getRandomItem(constraints);
+            let randomMoves = [];
+
+            for (let i = 0; i < numMoves; i++) {
+                randomMoves.push(getRandomItem(moves));
+            }
+
+            const outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = `
+                <strong>Location:</strong> ${randomLocation}<br>
+                ${randomConstraint ? `<strong>Constraint:</strong> ${randomConstraint}<br>` : ""}
+                <strong>Moves:</strong> ${randomMoves.join(", ")}
+            `;
+        }
+    </script>
+</body>
+</html>
